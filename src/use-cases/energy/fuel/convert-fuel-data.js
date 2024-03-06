@@ -83,6 +83,7 @@ const convertFuelData = ({ fuelDao, getQuaterFromDate, deepCopy }) => {
           whereQueryForEmissionMaster
         );
 
+        fuelInputs["quantity"] = parseFloat(fuelRecord.quantity);
         if (emissionMaster && emissionMaster.unit_id) {
           if (parseInt(emissionMaster.unit_id) !== parseInt(fuelRecord.unit)) {
             const whereQueryForUnitConversion = {
@@ -184,6 +185,7 @@ const convertFuelData = ({ fuelDao, getQuaterFromDate, deepCopy }) => {
           whereQueryForEmissionMaster
         );
 
+        fuelInputs["amount_paid"] = parseFloat(fuelRecord.amount_paid);
         if (emissionMaster && emissionMaster.unit_id) {
           if (
             parseInt(emissionMaster.unit_id) !== parseInt(fuelRecord.currency)
@@ -198,7 +200,6 @@ const convertFuelData = ({ fuelDao, getQuaterFromDate, deepCopy }) => {
             conversionMaster = await fuelDao.getConveretedUnit(
               whereQueryForUnitConversion
             );
-            fuelInputs["amount_paid"] = parseFloat(fuelRecord.amount_paid);
             if (conversionMaster && conversionMaster.conversion_factor) {
               fuelInputs["amount_paid"] =
                 parseFloat(fuelRecord.amount_paid) *
