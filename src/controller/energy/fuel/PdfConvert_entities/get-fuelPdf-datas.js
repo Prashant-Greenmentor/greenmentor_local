@@ -128,7 +128,7 @@ const fuelDataGetPdf = ({ selectFuelData }) => {
         return Formatedata[key.trim()] || '';
       });
 
-      const browser = await puppeteer.launch();
+      const browser = await puppeteer.launch({headless: false});
       const page = await browser.newPage();
       await page.setContent(filledHtml);
 
