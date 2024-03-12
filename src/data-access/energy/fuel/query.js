@@ -17,6 +17,7 @@ const query = ({ connects,models }) => {
     getEfFromFuelEmissionMaster,
     getConveretedUnit,
     addConvertedData,
+    updateConvertedData,
     getFuelById,
     getSiteById,
     getUnitById,
@@ -152,6 +153,7 @@ const query = ({ connects,models }) => {
     }
   }
   async function updateFuelDataInput({ id, data }) {
+   
     try {
       const fuelInputData = models.fuel_input_master;
       // Find the record to update by its ID
@@ -263,6 +265,33 @@ const query = ({ connects,models }) => {
       );
     }
   }
+
+  // for update fuel data
+  async function updateConvertedData(convertedData, id) {
+   
+    try {
+        const fuelData = models.fuel_data;
+        // Find the record to update by its ID
+        const recordToUpdate = await fuelData.findByPk(id);
+        
+        if (!recordToUpdate) {
+            return { success: false, message: 'Record not found' };
+        }
+
+        // Update the record with the new data
+        const updatedRecord = await recordToUpdate.update(convertedData);
+
+        if (updatedRecord) {
+            return { success: true, message: 'Record updated successfully' };
+        } else {
+            return { success: false, message: 'Failed to update record' };
+        }
+    } catch (error) {
+        console.log("Error: ", error);
+        return { success: false, message: 'An error occurred while updating the record' };
+    }
+}
+
 
   async function getSiteById(id) {
     try {

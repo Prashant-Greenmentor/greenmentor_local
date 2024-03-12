@@ -20,12 +20,12 @@ const addFuelInputData = ({ inputFuelDatas, fuelDao, convertFuelDatas }) => {
     let msg = `Error on inserting fuel data, please try again.`;
     // console.log(msg);
     if (res) {
-      console.log(res);
+    
       msg = `Fuel has been added successfully.`;
       let fuelRecord = info
 
       const convertedData = await convertFuelDatas(fuelRecord);
-        console.log(convertedData);
+        
 
       await fuelDao.addConvertedData(convertedData);
       // insert into approval master

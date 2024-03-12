@@ -9,7 +9,7 @@ const selectUnit = require("./select-units");
 const selectCurrency = require("./select-currencies");
 const selectUseType = require("./select-use-types");
 const addFuelData = require("./insert-input-fuel-data");
-// const updateFuelData = require("./update-input-fuel-data");
+const updateFuelData = require("./update-input-fuel-data");
 const getFuelInputData = require("./get-input-fuel-data");
 const FuelData = require("./get-fuel-data");  // for all fuel data
 const convertFuelData = require("./convert-fuel-data");
@@ -32,7 +32,7 @@ const convertFuelDatas = convertFuelData({
 });
 
 const addFuelDatas = addFuelData({ inputFuelDatas, fuelDao, convertFuelDatas });
-// const updateFuelDatas = updateFuelData({ inputFuelDatas, fuelDao });
+const updateFuelDatas = updateFuelData({ inputFuelDatas, fuelDao,convertFuelDatas });
 // #########
 const services = Object.freeze({
   selectSites,
@@ -44,7 +44,7 @@ const services = Object.freeze({
   getFuelInputDatas,
   selectFuelData,
   convertFuelDatas,
-  // updateFuelDatas
+  updateFuelDatas
 });
 
 module.exports = services;
@@ -58,5 +58,5 @@ module.exports = {
   selectFuelData,
   getFuelInputDatas,
   convertFuelDatas,
-  // updateFuelDatas
+  updateFuelDatas
 };

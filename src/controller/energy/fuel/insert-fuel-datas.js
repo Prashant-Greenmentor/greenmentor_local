@@ -20,7 +20,7 @@ const fuelDataAdd = ({ addFuelDatas }) => {
           "Content-Type": "application/json",
         },
         statusCode: 201,
-        body: { posted },
+        body: { posted,success:true },
       };
     } catch (e) {
       // TODO: Error logging
