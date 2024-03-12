@@ -79,7 +79,7 @@
 // };
 
 // module.exports = fuelDataGetPdf;
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-core');
 const path = require('path');
 const fs = require('fs');
 
@@ -128,7 +128,10 @@ const fuelDataGetPdf = ({ selectFuelData }) => {
         return Formatedata[key.trim()] || '';
       });
 
-      const browser = await puppeteer.launch({headless: false});
+      const browser = await puppeteer.launch({
+        executablePath: '/usr/bin/google-chrome-stable',
+        args: ['--user-data-dir=/opt/render/.cache/puppeteer']
+      });
       const page = await browser.newPage();
       await page.setContent(filledHtml);
 
