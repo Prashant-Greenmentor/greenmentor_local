@@ -6,7 +6,7 @@ const makeExpressCallback = (controller) => {
       params: req.params,
       files: req.files,
       ip: req.ip,
-            method: req.method,
+      method: req.method,
       path: req.path,
       headers: {
         "Content-Type": req.get("Content-Type"),

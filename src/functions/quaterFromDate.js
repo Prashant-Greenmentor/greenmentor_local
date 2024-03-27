@@ -6,11 +6,11 @@ const quaterFromDate = () => {
     const year = date.getFullYear();
 
     // Calculate the quarter based on the month
-    if (month >= 3 && month <= 5) {
+    if (month >= 4 && month <= 6) {
       return 1; // First quarter
-    } else if (month >= 6 && month <= 8) {
+    } else if (month >= 7 && month <= 9) {
       return 2; // Second quarter
-    } else if (month >= 9 && month <= 11) {
+    } else if (month >= 10 && month <= 12) {
       return 3; // Third quarter
     } else {
       return 4; // Fourth quarter

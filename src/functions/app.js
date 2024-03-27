@@ -10,12 +10,18 @@ const encrypts = require("./encrypt");
 const decrypts = require("./decrypt");
 const validatesDate = require("./validateDate");
 const quaterFromDate = require("./quaterFromDate");
+const getDaysCountBetweenDates = require("./getDaysCount");
+const getAllMonthCombosBetweenDates = require("./getAllMonthsCombos");
 const deepCopyObjects = require("./deepCopy");
 // #####################
 const encrypt = encrypts({ crypto, algorithm, password, iv });
 const decrypt = decrypts({ crypto, algorithm, password, iv });
 const validateDate = validatesDate();
 const getQuaterFromDate = quaterFromDate();
+const getDaysCount = getDaysCountBetweenDates();
+const getAllMonthYearCombos = getAllMonthCombosBetweenDates({
+  getQuaterFromDate,
+});
 const deepCopy = deepCopyObjects();
 // #####################
 const services = Object.freeze({
@@ -23,7 +29,9 @@ const services = Object.freeze({
   decrypt,
   validateDate,
   getQuaterFromDate,
+  getDaysCount,
   deepCopy,
+  getAllMonthYearCombos,
 });
 
 module.exports = services;
@@ -32,5 +40,7 @@ module.exports = {
   encrypt,
   validateDate,
   getQuaterFromDate,
+  getDaysCount,
   deepCopy,
+  getAllMonthYearCombos,
 };

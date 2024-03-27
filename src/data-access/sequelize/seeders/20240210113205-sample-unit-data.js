@@ -103,6 +103,27 @@ module.exports = {
           updatedAt: new Date(),
           modified_by: 1,
         },
+        {
+          unit: "MWh", //15
+          is_active: true,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+          modified_by: 1,
+        },
+        {
+          unit: "GWh", //16
+          is_active: true,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+          modified_by: 1,
+        },
+        {
+          unit: "kilojoules", //17
+          is_active: true,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+          modified_by: 1,
+        },
 
         // Add more sample data as needed
       ],

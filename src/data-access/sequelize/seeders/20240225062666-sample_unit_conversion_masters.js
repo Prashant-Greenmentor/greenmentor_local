@@ -147,7 +147,7 @@ module.exports = {
           required_unit_type: 1,
           reported_unit: 2,
           required_unit: 2,
-          conversion_factor: 1.000,
+          conversion_factor: 1.0,
           is_active: true,
           modified_by: 1,
           createdAt: new Date(),
@@ -195,7 +195,7 @@ module.exports = {
           required_unit_type: 1,
           reported_unit: 11,
           required_unit: 11,
-          conversion_factor: 1.000,
+          conversion_factor: 1.0,
           is_active: true,
           modified_by: 1,
           createdAt: new Date(),
@@ -237,18 +237,169 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
+        {
+          //volume
+          reported_unit_type: 3,
+          required_unit_type: 3,
+          reported_unit: 6,
+          required_unit: 7,
+          conversion_factor: 0.0283168,
+          is_active: true,
+          modified_by: 1,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          //volume
+          reported_unit_type: 3,
+          required_unit_type: 3,
+          reported_unit: 7,
+          required_unit: 7,
+          conversion_factor: 1,
+          is_active: true,
+          modified_by: 1,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          //energy
+          reported_unit_type: 1,
+          required_unit_type: 1,
+          reported_unit: 15,
+          required_unit: 2,
+          conversion_factor: 1000,
+          is_active: true,
+          modified_by: 1,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          //energy
+          reported_unit_type: 1,
+          required_unit_type: 1,
+          reported_unit: 16,
+          required_unit: 2,
+          conversion_factor: 1000000,
+          is_active: true,
+          modified_by: 1,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          //energy
+          reported_unit_type: 1,
+          required_unit_type: 1,
+          reported_unit: 17,
+          required_unit: 2,
+          conversion_factor: 0.000277778,
+          is_active: true,
+          modified_by: 1,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          //energy
+          reported_unit_type: 1,
+          required_unit_type: 1,
+          reported_unit: 1,
+          required_unit: 15,
+          conversion_factor: 0.0000000002778,
+          is_active: true,
+          modified_by: 1,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          //energy
+          reported_unit_type: 1,
+          required_unit_type: 1,
+          reported_unit: 2,
+          required_unit: 15,
+          conversion_factor: 0.001,
+          is_active: true,
+          modified_by: 1,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          //energy
+          reported_unit_type: 1,
+          required_unit_type: 1,
+          reported_unit: 11,
+          required_unit: 15,
+          conversion_factor: 0.277778,
+          is_active: true,
+          modified_by: 1,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          //energy
+          reported_unit_type: 1,
+          required_unit_type: 1,
+          reported_unit: 15,
+          required_unit: 15,
+          conversion_factor: 1.0,
+          is_active: true,
+          modified_by: 1,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          //energy
+          reported_unit_type: 1,
+          required_unit_type: 1,
+          reported_unit: 16,
+          required_unit: 15,
+          conversion_factor: 1000,
+          is_active: true,
+          modified_by: 1,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          //energy
+          reported_unit_type: 1,
+          required_unit_type: 1,
+          reported_unit: 17,
+          required_unit: 15,
+          conversion_factor: 0.0000002778,
+          is_active: true,
+          modified_by: 1,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          //energy
+          reported_unit_type: 1,
+          required_unit_type: 1,
+          reported_unit: 17,
+          required_unit: 11,
+          conversion_factor: 0.000001,
+          is_active: true,
+          modified_by: 1,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
       ],
       {}
     );
   },
 
   down: async (queryInterface, Sequelize) => {
+    await queryInterface.bulkDelete("fuel_data", null, {});
+    await queryInterface.bulkDelete("fuel_input_masters", null, {});
+    await queryInterface.bulkDelete("electricity_data", null, {});
+    await queryInterface.bulkDelete("electricity_input_masters", null, {});
     await queryInterface.bulkDelete("UnitConversionMasters", null, {});
     // Reset the ID sequence
     const tableName = "UnitConversionMasters";
+    const tableName2 = "fuel_data";
     const resetSequenceQuery = `ALTER SEQUENCE "${tableName}_id_seq" RESTART WITH 1;`;
+    const resetSequenceQuery2 = `ALTER SEQUENCE "${tableName2}_id_seq" RESTART WITH 1;`;
 
     try {
+      await queryInterface.sequelize.query(resetSequenceQuery2);
       await queryInterface.sequelize.query(resetSequenceQuery);
       console.log(`ID sequence of ${tableName} table reset.`);
     } catch (error) {

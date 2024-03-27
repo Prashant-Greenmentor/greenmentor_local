@@ -50,6 +50,7 @@ const services = Object.freeze({
   fuelDataGet,
   fuelInputDataGet,
   fuelDataUpdates,
+ 
   fuelDataGetPdf
 });
 
@@ -65,5 +66,6 @@ module.exports = {
   UploadFuelEvidence,
   fuelInputDataGet,
   fuelDataUpdates,
+  
   fuelDataGetPdf
 };

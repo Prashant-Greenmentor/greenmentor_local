@@ -1,5 +1,6 @@
 const makeFuelInput = ({validateDate}) => {
   return function make(info) {
+    console.log(info)
     if (!info.bill_date || !validateDate(info.bill_date)) {
       throw new Error("Please enter valid Bill Date.");
     }

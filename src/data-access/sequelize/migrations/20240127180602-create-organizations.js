@@ -9,7 +9,7 @@ module.exports = {
       company_code: { type: Sequelize.STRING, unique: true, allowNull: false },
       date_of_joining: { type: Sequelize.DATE, allowNull: false },
       is_active: {
-        type: Sequelize.STRING,
+        type: Sequelize.BOOLEAN,
         defaultValue: true,
         allowNull: false,
       },
@@ -21,8 +21,6 @@ module.exports = {
           key: "id",
         },
       },
-      created_at: { type: Sequelize.DATE },
-      modified_at: { type: Sequelize.DATE },
       modified_by: {
         type: Sequelize.BIGINT,
         allowNull: false,
@@ -30,6 +28,14 @@ module.exports = {
           model: "users",
           key: "id",
         },
+      },
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE,
+      },
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE,
       },
     });
   },

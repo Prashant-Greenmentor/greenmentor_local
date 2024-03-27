@@ -21,7 +21,8 @@ const query = ({ connects,models }) => {
     getFuelById,
     getSiteById,
     getUnitById,
-    getUseTypeById
+    getUseTypeById,
+    addSummaryData
   });
 
   async function selectAllSites({organization_id}) {
@@ -110,6 +111,7 @@ const query = ({ connects,models }) => {
       console.log("Error: ", e);
     }
   }
+  
   async function selectAllFuelData() {
     try {
 
@@ -187,6 +189,7 @@ const query = ({ connects,models }) => {
   }
   
   async function getUnitTypeByUnit(whereQuery) {
+    console.log(whereQuery,"whare query")
     try {
       return await models.module_unit_master.findOne({
         where: whereQuery,
@@ -203,10 +206,13 @@ const query = ({ connects,models }) => {
   }
 
   async function getUsageFactorFromUsageMaster(whereQuery) {
+    console.log(whereQuery,"get UsageFactor fuel query 209")
     try {
-      return await models.UsageMaster.findOne({
+      let res= await models.UsageMaster.findOne({
         where: whereQuery,
       });
+      console.log(res)
+      return res
     } catch (error) {
       console.error(
         "Error fetching the usage master from db, reason: ",
@@ -347,6 +353,22 @@ const query = ({ connects,models }) => {
       );
     }
   }
+
+
+  async function addSummaryData(summaryData) {
+    try {
+      await models.scope1_scope2_summary_data.create(summaryData);
+    } catch (error) {
+      console.error(
+        "Error saving the Summary data in db, reason: ",
+        error.message
+      );
+      throw new Error(
+        "Error saving the Summary data in db, reason: " + error.message
+      );
+    }
+  }
+
 };
 
 module.exports = query;

@@ -33,6 +33,9 @@ module.exports = {
       bill_date: {
         type: Sequelize.DATE,
       },
+      month: {
+        type: Sequelize.STRING,
+      },
       quarter: {
         type: Sequelize.BIGINT,
       },

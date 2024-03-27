@@ -36,7 +36,7 @@ const convertFuelData = ({ fuelDao, getQuaterFromDate, deepCopy }) => {
         usageMaster = await fuelDao.getUsageFactorFromUsageMaster(
           whereQueryForUsageMaster
         );
-
+console.log(usageMaster,"usages master 39")
         if (usageMaster && usageMaster.required_unit) {
           if (
             parseInt(usageMaster.required_unit) !== parseInt(fuelRecord.unit)
@@ -137,7 +137,6 @@ const convertFuelData = ({ fuelDao, getQuaterFromDate, deepCopy }) => {
         usageMaster = await fuelDao.getUsageFactorFromUsageMaster(
           whereQueryForUsageMaster
         );
-
         if (usageMaster && usageMaster.required_unit) {
           if (
             parseInt(usageMaster.required_unit) !==
@@ -298,19 +297,21 @@ const convertFuelData = ({ fuelDao, getQuaterFromDate, deepCopy }) => {
           fuelInputs.quantity ? fuelInputs.quantity * emissionMaster.kg_co2e_n20_per_unit : fuelInputs.amount_paid * emissionMaster.kg_co2e_n20_per_unit;
         total_kg_co2e_per_unit =
           parseFloat(kg_co2e_co2_per_unit) +
-          parseFloat(kg_co2e_ch4_per_unit) +
-          parseFloat(kg_co2e_n20_per_unit);
+          (isNaN(kg_co2e_ch4_per_unit) ? 0 : parseFloat(kg_co2e_ch4_per_unit)) +
+          (isNaN(kg_co2e_n20_per_unit) ? 0 : parseFloat(kg_co2e_n20_per_unit));
+        } else {
+          total_kg_co2e_per_unit = executeEquation(equation, fuelInputs);
+        }
         fuelInputs["quater"] = getQuaterFromDate(fuelInputs.bill_date);
         fuelInputs["year"] = new Date(fuelInputs.bill_date).getFullYear();
-      } else {
-        total_kg_co2e_per_unit = executeEquation(equation, fuelInputs);
-      }
+        fuelInputs["month"] = new Date(fuelInputs.bill_date).toLocaleString('en', { month: 'short' });
 
       let convertedData = {
         organization_id: 1,
         module_id: 1,
         sub_module_id: 1,
         bill_date: fuelInputs.bill_date,
+        month: fuelInputs["month"],
         quarter: fuelInputs["quater"],
         year: fuelInputs["year"],
         site_id: fuelInputs["site"],

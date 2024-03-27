@@ -6,35 +6,35 @@ module.exports = {
       "UnitTypeMasters",
       [
         {
-          unit_type: "Energy",
+          unit_type: "Energy", //1
           is_active: true,
           modified_by: 1,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          unit_type: "Liquid",
+          unit_type: "Liquid", //2
           is_active: true,
           modified_by: 1,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          unit_type: "Volume",
+          unit_type: "Volume", //3
           is_active: true,
           modified_by: 1,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          unit_type: "Weight",
+          unit_type: "Weight", //4
           is_active: true,
           modified_by: 1,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          unit_type: "Currency",
+          unit_type: "Currency", //5
           is_active: true,
           modified_by: 1,
           createdAt: new Date(),

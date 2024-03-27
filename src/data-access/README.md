@@ -48,8 +48,47 @@ npx sequelize db:migrate:undo --name 20240203182428-create-site_master.js;   -->
  npx sequelize-cli model:generate --name FuelType --attributes fuel_type:string,is_active:boolean,modified_by:bigint
   -->
 
+<!-- Approval Master
+npx sequelize-cli model:generate --name ApprovalMaster --attributes id:bigint,fuel_input_master_id:bigint,is_active:boolean,modified_by:bigint -->
+
+
+
+
+<!-- electricity_input_master -->
+<!-- 
+npx sequelize-cli model:generate --name electricity_input_master --attributes electricity_input_data:jsonb,organization_id:bigint,evidence:string,is_active:boolean,modified_by:bigint
+ -->
+
+ <!-- Approval Master Electricity
+npx sequelize-cli model:generate --name ApprovalMasterElectricity --attributes organization_id:bigint,electricity_input_master_id:bigint,is_active:boolean,modified_by:bigint,requested_by:bigint,request_status:string,feedback:string -->
+<!-- Replace request_status type manually by ENUM('approved','rejected','submitted')  -->
+
+<!-- electricity_source -->
+<!-- npx sequelize-cli model:generate --name electricity_source --attributes electricity_source:string,is_active:boolean,modified_by:bigint -->
+
+<!-- electricity_source_master -->
+<!-- npx sequelize-cli model:generate --name electricity_source_master --attributes electricity_source_id:string,unit_type_id:bigint,transaction_type:string,source_type:string,is_active:boolean,modified_by:bigint -->
+<!-- Replace after the model is generated: transaction_type by ENUM('Captive','Purchased') and source_type by ENUM('Renewable','Non Renewable) -->
+
+<!-- electricity_emission_master -->
+<!-- npx sequelize-cli model:generate --name electricity_emission_master --attributes electricity_source_id:bigint,unit_type_id:bigint,unit_id:bigint,total_kg_co2e_per_unit:decimal,kg_co2e_co2_per_unit:decimal,kg_co2e_ch4_per_unit:decimal,kg_co2e_n2o_per_unit:decimal,kg_co2e_hfc_per_unit:decimal,kg_co2e_pfc_per_unit:decimal,kg_co2e_nf3_per_unit:decimal,kg_co2e_sf6_per_unit:decimal,is_active:boolean,modified_by:bigint -->
+
+<!-- electricty calculation methods -->
+<!-- npx sequelize-cli model:generate --name electricity_calculation --attributes calculation_method:bigint,unit_used:bigint,emission_factor:bigint,calculation_equation:jsonb,is_active:boolean,modified_by:bigint -->
+
+<!-- electricity_data -->
+<!-- npx sequelize-cli model:generate --name electricity_data --attributes company_id:bigint,module_id:bigint,sub_module_id:bigint,bill_date:date,quarter:bigint,year:bigint,site_id:bigint,electricity_source_id:bigint,source_type:string,transaction_type:string,consumed_value:decimal,unit_id:bigint,amount_paid:decimal,currency_id:bigint,evidence:string,status:string,comments:string,calculation_method:bigint,input_unit_type:bigint,required_unit_type:bigint,required_unit:bigint,unit_conversion:bigint,emission_factor:decimal,usage_required_unit:bigint,usage_factor:decimal,usage_unit_type:bigint,usage_in_kwh:decimal,total_co2e_kg:decimal,co2e_co2_kg:decimal,co2e_ch4_kg:decimal,co2e_n2o_kg:decimal,modified_by:bigint -->
+
+ <!-- UsageElectricityMaster  Master
+ npx sequelize-cli model:generate --name UsageElectricityMaster --attributes electricity_source_id:BIGINT,required_unit_type:BIGINT,required_unit:BIGINT,usage_factor_kwh:DECIMAL,is_active:boolean,modified_by:bigint
+  -->
+
+<!-- scope1_scope2_summary_data -->
 <!--
-npx sequelize-cli model:generate --name ApprovalMaster --attributes id:bigint,fuel_input_master_id:bigint,is_active:boolean,modified_by:bigint
+npx sequelize-cli model:generate --name scope1_scope2_summary_data --attributes organization_id:bigint,module_id:bigint,sub_module_id:bigint,month:string,quarter:bigint,year:bigint,site_id:bigint,usage_in_kwh:decimal,total_co2e_kg:decimal,co2e_co2_kg:decimal,co2e_ch4_kg:decimal,co2e_n2o_kg:decimal,modified_by:bigint 
+-->
+
+<!-- 
 
 npx sequelize db:migrate:undo --name 20240203182428-create-site_master.js -- to delete a specific table
 npx sequelize db:migrate --name 20240203182428-create-site_master.js -- to run a specific table

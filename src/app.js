@@ -20,6 +20,8 @@ const server = app.listen(PORT, () => {
 
 // routes
 app.use("/api/v1", require("./routes/energy/fuel/app"));
+app.use("/api/v1", require("./routes/energy/electricity/app"));
+app.use("/api/v1", require("./routes/energy/app"));
 
 
 // when invalid routes are entered

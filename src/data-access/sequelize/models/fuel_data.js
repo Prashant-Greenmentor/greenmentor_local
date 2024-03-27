@@ -23,6 +23,18 @@ module.exports = (sequelize, DataTypes) => {
       models.fuel_data.belongsTo(models.unit_master, {
         foreignKey: "fuel_unit_id",
       });
+      models.fuel_data.belongsTo(models.organization, {
+        foreignKey: "organization_id",
+      });
+      models.fuel_data.belongsTo(models.user, {
+        foreignKey: "modified_by",
+      });
+      models.fuel_data.belongsTo(models.ModuleMaster, {
+        foreignKey: "module_id",
+      });
+      models.fuel_data.belongsTo(models.SubModuleMaster, {
+        foreignKey: "sub_module_id",
+      });
     }
   }
   fuel_data.init(
@@ -31,6 +43,7 @@ module.exports = (sequelize, DataTypes) => {
       module_id: DataTypes.BIGINT,
       sub_module_id: DataTypes.BIGINT,
       bill_date: DataTypes.DATE,
+      month: DataTypes.STRING,
       quarter: DataTypes.BIGINT,
       year: DataTypes.BIGINT,
       site_id: DataTypes.BIGINT,

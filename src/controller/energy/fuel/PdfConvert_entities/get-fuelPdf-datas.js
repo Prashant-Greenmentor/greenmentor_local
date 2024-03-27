@@ -1,4 +1,3 @@
-
 const fs = require("fs");
 const puppeteer = require("puppeteer");
 const path = require("path");
@@ -18,8 +17,8 @@ const fuelDataGetPdf = ({ selectFuelData }) => {
       };
       const data = await selectFuelData(toView);
       const fuelData = JSON.parse(JSON.stringify(data));
-      const data_2022 = fuelData.filter((item) => item.year == "2022");
-      const data_2023 = fuelData.filter((item) => item.year == "2023");
+      const data_2022 = fuelData.filter((item) => item.year === "2022");
+      const data_2023 = fuelData.filter((item) => item.year === "2023");
       const total_fuel_2022 = data_2022.reduce(
         (acc, curr) => acc + parseFloat(curr.usage_in_kwh),
         0
@@ -81,4 +80,3 @@ const fuelDataGetPdf = ({ selectFuelData }) => {
 };
 
 module.exports = fuelDataGetPdf;
-
