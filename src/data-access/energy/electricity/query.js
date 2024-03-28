@@ -1,4 +1,3 @@
-
 const { Sequelize } = require("sequelize");
 
 const query = ({ connects,models }) => {
@@ -130,7 +129,7 @@ const query = ({ connects,models }) => {
 
       const res = await models.electricity_input_master.findAll();
 
-      // console.log("query",res)
+      console.log("query",res)
       return res;
     } catch (e) {
       console.log("Error: ", e);
@@ -369,14 +368,12 @@ async function updateConvertedData(convertedData, id) {
   }
 }
 async function updateElectricityDataInput({ id, data }) {
-
+   
   try {
-    const res = await models.electricity_input_master.findAll()
-    console.log(res)
-    const electricityInputData =await models.electricity_input_master;
+    const electricityInputData =await  models.electricity_input_master;
     // Find the record to update by its ID
     const recordToUpdate = await electricityInputData.findByPk(id);
-  
+    
     if (recordToUpdate) {
       // Update the record with the new data
       await recordToUpdate.update(data);

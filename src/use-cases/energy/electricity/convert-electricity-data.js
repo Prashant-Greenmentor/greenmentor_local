@@ -10,7 +10,7 @@ const convertElectricityData = ({ electricityDao, getQuaterFromDate, deepCopy })
       let usageMaster;
       let usage_in_kwh;
       let usage_factor;
-
+      let kwhUnit;
       let electricity_source_master = await electricityDao.getSourceType(
         electricityRecord.electricity_source, electricityRecord.transaction_type
       );
@@ -34,13 +34,13 @@ const convertElectricityData = ({ electricityDao, getQuaterFromDate, deepCopy })
         }
         
         if (
-          parseInt(kwhUnit.id) !== parseInt(electricityRecord.unit)
+          parseInt(kwhUnit?.id) !== parseInt(electricityRecord.unit)
         ) {
           const whereQueryForUnitConversion = {
             reported_unit_type: electricityInputs["unit_type"],
             required_unit_type: electricityInputs["unit_type"],
             reported_unit: electricityRecord.unit,
-            required_unit: kwhUnit.id,
+            required_unit: kwhUnit?.id,
             is_active: true,
           };
           usageConversionMaster = await electricityDao.getConveretedUnit(
@@ -327,7 +327,7 @@ const convertElectricityData = ({ electricityDao, getQuaterFromDate, deepCopy })
         co2e_co2_kg: kg_co2e_co2_per_unit,
         co2e_ch4_kg: kg_co2e_ch4_per_unit,
         co2e_n2o_kg: kg_co2e_n2o_per_unit,
-        usage_required_unit: kwhUnit.id,
+        usage_required_unit: kwhUnit?.id,
         usage_factor: usage_factor ? usage_factor : null,
         usage_unit_type: moduleUnit.unit_type,
         usage_in_kwh: usage_in_kwh ? usage_in_kwh : null,

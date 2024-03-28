@@ -1,5 +1,4 @@
 const updateElectricityInputData = ({ electricityDao, inputElectricityDatas, convertElectricityDatas }) => {
- 
   return async function put(info) {
     try {
       let data = await inputElectricityDatas(info); // entity
@@ -18,7 +17,7 @@ const updateElectricityInputData = ({ electricityDao, inputElectricityDatas, con
       };
 
       const res = await electricityDao.updateElectricityDataInput({ data: updatedData, id });
-      console.log(res)
+      
       if (res?.success) {
         const electricityRecord = info;
         // const convertedData = await convertElectricityDatas(electricityRecord); // Convert electricity data
@@ -28,7 +27,7 @@ const updateElectricityInputData = ({ electricityDao, inputElectricityDatas, con
         // if (updateConvertedDataRes.success) {
           return "electricity  data have been updated successfully.";
         // } else {
-          throw new Error(updateConvertedDataRes.message||"Error in updating converted data.");
+          // throw new Error(updateConvertedDataRes.message||"Error in updating converted data.");
         // }
       } else {
         throw new Error(res.message||"Error in updating fuel data.");
